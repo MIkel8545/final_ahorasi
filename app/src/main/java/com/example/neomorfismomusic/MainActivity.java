@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView ArtistaDos;
     ImageView ArtistaUno;
     ImageView ArtistaTres;
-    List<song> ListaCanciones = new ArrayList<song>();
+    List<Song> ListaCanciones = new ArrayList<Song>();
     FirebaseFirestore firebaseFirestore;
 
     TextView prueba2;
@@ -201,6 +202,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
+    }
+
+    public void openAlbum(View view) {
+
+        Intent i = new Intent(this, AlbumActivity.class);
+        startActivity(i);
+
+    }
+
+    public void openReproductor(View view) {
+        Intent i = new Intent(this, ReproductorActivity.class);
+        startActivity(i);
 
     }
 }

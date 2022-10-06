@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_200">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="196dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="731dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_begin="20dp" />
+
+
+
+    <TextView
+        android:id="@+id/textView_album"
+        android:layout_width="174dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="4dp"
+        android:text="Album"
+        android:textSize="20sp"
+
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="267dp"
+        android:layout_height="188dp"
+        android:clipChildren="false"
+        android:orientation="vertical"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.borutsky.neumorphism.NeumorphicFrameLayout
+            android:id="@+id/albumImage"
+            android:layout_width="161dp"
+            android:layout_height="161dp"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentBottom="false"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="15dp"
+            android:layout_marginTop="20dp"
+            android:baselineAligned="false"
+            android:foregroundGravity="center_vertical"
+            android:textAlignment="center"
+            app:background_color="@color/purple_200"
+            app:corner_radius="20dp"
+            app:shape="rectangle"
+            app:state="flat">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cornerRadius="50dp"
+                app:srcCompat="@drawable/item1" />
+
+
+        </com.borutsky.neumorphism.NeumorphicFrameLayout>
+
+
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/listView_canciones"
+        android:layout_width="372dp"
+        android:layout_height="243dp"
+        android:layout_marginEnd="33dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.0"
+
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+    <TextView
+        android:id="@+id/textView_canciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+
+        android:text="canciones"
+        app:layout_constraintStart_toEndOf="@+id/textView_album"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="TextView"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textView_album" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="395dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="276dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="515dp" />
+
+    <LinearLayout
+        android:layout_width="78dp"
+        android:layout_height="188dp"
+        android:clipChildren="false"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.borutsky.neumorphism.NeumorphicFrameLayout
+            android:id="@+id/flat_back"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
+            app:background_color="@color/purple_200"
+            app:corner_radius="20dp"
+            app:shape="circle"
+            app:state="flat">
+
+            <!--inside this frame layout we are creating a simple text view-->
+
+            <ImageButton
+                android:id="@+id/imageBtn_back2"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@android:color/transparent"
+                android:contentDescription=""
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.borutsky.neumorphism.NeumorphicFrameLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

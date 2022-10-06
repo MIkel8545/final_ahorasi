@@ -297,6 +297,7 @@
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
+            android:onClick="openAlbum"
             app:background_color="@color/purple_200"
             app:corner_radius="20dp"
             app:shape="rectangle"
@@ -389,7 +390,8 @@
             <ImageView
                 android:id="@+id/AlbumImg"
                 android:layout_width="100dp"
-                android:layout_height="80dp">
+                android:layout_height="80dp"
+                android:onClick="openReproductor">
 
             </ImageView>
 
