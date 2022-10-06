@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "37315183591",
+    "project_id": "neomorfismomusic",
+    "storage_bucket": "neomorfismomusic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37315183591:android:71968e8a2bd139c7f8f342",
+        "android_client_info": {
+          "package_name": "com.example.neomorfismomusic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37315183591-38g8fhjtqf5jhck7i0vdtpfhqrs5jo6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfUIlbfduKZ9QBWR5UPaWvNJj0UnGuZYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37315183591-38g8fhjtqf5jhck7i0vdtpfhqrs5jo6i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <!--<color name="purple_200">#ededed</color>-->
+    <color name="purple_200">#E9EEFC</color>
+    <color name="white">#fcfcfc</color>
+    <color name="letras">#757E8D</color>
+    <color name="primary">#749CFB</color>
+    <color name="secondary">#5D79BB</color>
+    <color name="letrasSecondary">#9EA4AD</color>
+</resources>
