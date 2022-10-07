@@ -179,7 +179,7 @@
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_skip_previous_24"
                 android:text=""
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <Button
                 android:id="@+id/play"
@@ -190,7 +190,7 @@
                 android:background="@android:color/transparent"
                 android:onClick="Play"
                 android:text=""
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
             <Button
@@ -244,10 +244,11 @@
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_home_24"
                 android:foregroundGravity="center"
+                android:onClick="openHome"
                 android:shadowColor="#EEFFFF"
                 android:text=""
                 android:textColor="@color/white"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="OnClick,SpeakableTextPresentCheck" />
 
         </com.borutsky.neumorphism.NeumorphicFrameLayout>
 
@@ -272,6 +273,7 @@
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_search_24"
                 android:foregroundGravity="center"
+                android:onClick="openBusqueda"
                 android:text=""
                 android:textColor="@color/white"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -301,6 +303,7 @@
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_history_24"
                 android:foregroundGravity="center"
+                android:onClick="openHistorial"
                 android:text=""
                 android:textColor="@color/white"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -327,6 +330,7 @@
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_queue_music_24"
                 android:foregroundGravity="center"
+                android:onClick="openBiblioteca"
                 android:text=""
                 android:textColor="@color/white"
                 tools:ignore="SpeakableTextPresentCheck" />

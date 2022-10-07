@@ -103,5 +103,24 @@ public class BilbiotecaActivity extends AppCompatActivity {
     }
 
 
+    public void openHome(View view) {
 
+        finish();
+    }
+
+
+    public void openBusqueda(View view) {
+        Intent i = new Intent(this, BusquedaActivity.class);
+        startActivity(i);
+    }
+
+    public void openHistorial(View view) {
+        Intent i = new Intent(this, HistorialActivity.class);
+        startActivity(i);
+    }
+
+    public void openBiblioteca(View view) {
+        Intent i = new Intent(this, BilbiotecaActivity.class);
+        startActivity(i);
+    }
 }
