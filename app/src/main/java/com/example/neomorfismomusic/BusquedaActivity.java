@@ -10,30 +10,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
-public class ArtistaActivity extends AppCompatActivity {
+public class BusquedaActivity extends AppCompatActivity {
 
     ListView listSong;
     MediaPlayer mediaPlayer;
     Button play;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_artista);
-
-
-
-        listSong = findViewById(R.id.list_canciones2);
+        setContentView(R.layout.activity_busqueda);
+        listSong = findViewById(R.id.list_busqueda);
 
 
         ArrayList<Song> lista = new ArrayList<>();
@@ -66,7 +57,6 @@ public class ArtistaActivity extends AppCompatActivity {
         SongAdapter songAdapter = new SongAdapter(this, R.layout.song_list, lista);
         listSong.setAdapter(songAdapter);
     }
-
 
     private void StartMusic(String Uri){
         String url = Uri ;
