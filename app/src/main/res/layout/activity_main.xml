@@ -83,91 +83,7 @@
     </TextView>
 
 
-    <LinearLayout
-        android:id="@+id/Album"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/TextAlbum"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:clipChildren="false"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="3">
 
-        <!--on below line we are creating a new neumorphic frame layout-->
-        <!--we are adding radius as 20 and shape as rectangle-->
-        <com.borutsky.neumorphism.NeumorphicFrameLayout
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:onClick="openAlbum"
-            app:background_color="@color/purple_200"
-            app:corner_radius="20dp"
-            app:shape="rectangle"
-            app:state="flat">
-
-            <!--inside this frame layout we are creating a simple text view-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Flat"
-                android:textColor="@color/white" />
-
-        </com.borutsky.neumorphism.NeumorphicFrameLayout>
-
-        <!--on below line we are creating a new neumorphic frame layout-->
-        <!--we are adding radius as 20 and shape as rectangle
-        in this we are using state as concave-->
-        <com.borutsky.neumorphism.NeumorphicFrameLayout
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            app:background_color="@color/purple_200"
-            app:corner_radius="20dp"
-            app:shape="rectangle"
-            app:state="flat">
-
-            <!--inside this frame layout we are creating a simple text view-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Concave"
-                android:textColor="@color/white" />
-
-        </com.borutsky.neumorphism.NeumorphicFrameLayout>
-
-        <!--on below line we are creating a new neumorphic frame layout-->
-        <!--we are adding radius as 20 and shape as rectangle
-        in this we are using state as convex-->
-        <com.borutsky.neumorphism.NeumorphicFrameLayout
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            app:background_color="@color/purple_200"
-            app:corner_radius="20dp"
-            app:shape="rectangle"
-            app:state="flat">
-
-            <!--inside this frame layout we are creating a simple text view-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Convex"
-                android:textColor="@color/white" />
-
-        </com.borutsky.neumorphism.NeumorphicFrameLayout>
-
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/TextAlbum"
@@ -175,11 +91,35 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/linear"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="Álbums"
         android:textSize="14dp">
 
     </TextView>
+
+    <!--Recycler View widget-->
+    <LinearLayout
+        android:id="@+id/Album"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_below="@id/TextAlbum"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="35dp"
+        android:clipChildren="false"
+        android:orientation="horizontal"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarStyle="outsideInset">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewAlbum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/firstBlock"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+    </LinearLayout>
 
 
     <com.borutsky.neumorphism.NeumorphicFrameLayout
@@ -187,7 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/Album"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="1"

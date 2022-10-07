@@ -1,15 +1,17 @@
 package com.example.neomorfismomusic;
 
-public class Album {
+import java.io.Serializable;
+
+public class Album implements Serializable {
 
 
-    int Imagen;
+    byte[] Imagen;
     String NombreAlbum;
     String Artista;
-    String Canciones;
+    int Canciones;
     String Year;
 
-    public Album(int imagen, String nombreAlbum, String artista, String canciones, String year) {
+    public Album(byte[] imagen, String nombreAlbum, String artista, int canciones, String year) {
         Imagen = imagen;
         NombreAlbum = nombreAlbum;
         Artista = artista;
@@ -17,12 +19,12 @@ public class Album {
         Year = year;
     }
 
-    public int getImagen() {
+    public byte[] getImagen() {
         return Imagen;
     }
 
-    public void setImagen(int imagen) {
-        Imagen = imagen;
+    public void setImagen(byte[] imagen) {
+        this.Imagen = imagen;
     }
 
     public String getNombreAlbum() {
@@ -41,16 +43,16 @@ public class Album {
         Artista = artista;
     }
 
-    public String getCanciones() {
+    public int getCanciones() {
         return Canciones;
     }
 
-    public void setCanciones(String  canciones) {
+    public void setCanciones(int  canciones) {
         Canciones = canciones;
     }
 
     public String getYear() {
-        return Year;
+        return this.Year;
     }
 
     public void setYear(String year) {

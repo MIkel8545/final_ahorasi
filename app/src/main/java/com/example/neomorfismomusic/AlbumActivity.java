@@ -15,8 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.borutsky.neumorphism.NeumorphicFrameLayout;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AlbumActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class AlbumActivity extends AppCompatActivity {
     private TextView can;
     private TextView yea;
     ListView listSong;
+    private Album album;
 
 
 
@@ -44,23 +47,28 @@ public class AlbumActivity extends AppCompatActivity {
 
         btnback.setOnClickListener(blistener);
 
-    listSong = findViewById(R.id.listView_canciones);
+        listSong = findViewById(R.id.listView_canciones);
 
-    img = findViewById(R.id.imageView);
+        img = findViewById(R.id.imageView);
 
-    alb = findViewById(R.id.textView_album);
+        alb = findViewById(R.id.textView_album);
 
-    can = findViewById(R.id.textView_canciones);
+        can = findViewById(R.id.textView_canciones);
 
-    yea = findViewById(R.id.textView_year);
+        yea = findViewById(R.id.textView_year);
 
+        album = (Album) getIntent().getExtras().getSerializable("AlbumDetails");
+        Glide.with(AlbumActivity.this).load(album.getImagen()).into(img);
+        alb.setText(album.getNombreAlbum().toUpperCase(Locale.ROOT));
+        can.setText(album.getCanciones() +" canciones");
+        yea.setText("Album "+album.getYear());
 
-    Album album = new Album(R.drawable.item1, "IMPERA", "Ghost", "12 canciones", " Album 2022");
+/*  Album album = new Album(R.drawable.item1, "IMPERA", "Ghost", "12 canciones", " Album 2022");
 
         img.setImageResource(album.getImagen());
         alb.setText(album.getNombreAlbum());
         can.setText(album.getCanciones());
-        yea.setText(album.getYear());
+        yea.setText(album.getYear());*/
 
 
     ArrayList<Song> lista = new ArrayList<>();
