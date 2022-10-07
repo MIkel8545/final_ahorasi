@@ -1,10 +1,10 @@
 package com.example.neomorfismomusic;
 
-import static com.example.neomorfismomusic.R.id.ArtistaUno;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,17 +12,16 @@ import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,10 +30,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,13 +52,22 @@ public class MainActivity extends AppCompatActivity {
     ImageView ArtistaDos;
     ImageView ArtistaUno;
     ImageView ArtistaTres;
-    List<Song> ListaCanciones = new ArrayList<Song>();
+    TextView Saludo;
+    RecyclerView recyclerView;
+    RecyclerView recyclerViewGen;
+    ArrayList<artistas> ListArtis;
+    ArrayList<String> Generos;
+    //List<song> ListaCanciones = new ArrayList<song>();
     FirebaseFirestore firebaseFirestore;
 
     TextView prueba2;
+    String [] img = new String[3];
+    String [] text = new String[3];
+    int cont = 0;
+    String Gen;
 
-
-
+    AdaptadorArtist AdaptadorArtist;
+    AdapterGenero AdapterGenero;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,28 +82,24 @@ public class MainActivity extends AppCompatActivity {
         ArtistaUno = findViewById(R.id.ArtistaUno);
         NombreArtistaUno = findViewById(R.id.NombreArtistaUno);
         ArtistaDos = findViewById(R.id.ArtistaDos);
-        NombreArtistaDos = findViewById( R.id.NombreArtistaDos);
+        NombreArtistaDos = findViewById(R.id.NombreArtistaDos);
         NombreArtistaTres = findViewById(R.id.NombreArtistaTres);
+        Saludo = findViewById(R.id.firstBlock);
+        recyclerView = findViewById(R.id.recyclerview);
+        recyclerViewGen = findViewById(R.id.recyclerviewGen);
 
         ArtistaTres = findViewById(R.id.ArtistaTres);
         play.setBackgroundResource(R.drawable.ic_baseline_play_arrow_24);
-
-
-       int picId = getResources().getIdentifier("rihanna", "drawable", getApplicationContext().getPackageName());
-       /* song Umbrella = new song("Umbrella","Rihanna","desconocido","Pop",picId, "umbrella.mp3");
-        ListaCanciones.add(Umbrella);
-        startSound( ListaCanciones.get(0).getUrSong());
-
-        AlbumImg.setBackgroundResource(ListaCanciones.get(0).getPortada());
-        Info.setText(ListaCanciones.get(0).Datos());*/
-
         firebaseFirestore = FirebaseFirestore.getInstance();
+        ObtenerSaludo();
+        ListArtis = new ArrayList<>();
+        Generos = new ArrayList<>();
         ObtenDatos();
-
 
     }
 
     private void ObtenDatos(){
+
         DocumentReference docRef = firebaseFirestore.collection("songs").document("Umbrella");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -120,30 +123,40 @@ public class MainActivity extends AppCompatActivity {
         });
 
         firebaseFirestore.collection("Artistas")
-                .limit(3)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("Artistasss", document.getId() + " => " + document.getData());
-                                if(document.getId().equals("Gorija")) {
-                                    Glide.with(MainActivity.this).load(document.getString("ImgArtis")).into(ArtistaUno);
-                                    NombreArtistaUno.setText(document.getString("Nombre"));
-                                    //Log.d("Entrooo","Es igual");
+                                Gen= document.getString("Genero");
+                                artistas atist = new artistas(document.getString("ImgArtis"), document.getString("Nombre"),
+                                        Gen);
+
+                                ListArtis.add(cont, atist);
+                                if(!Generos.contains(Gen)){
+                                 Generos.add(cont, document.getString("Genero"));
                                 }
-                                if(document.getId().equals("Marron5")) {
-                                    Glide.with(MainActivity.this).load(document.getString("ImgArtis")).into(ArtistaDos);
-                                    NombreArtistaDos.setText(document.getString("Nombre"));
-                                    //Log.d("Entrooo","Es igual");
-                                }
-                                if(document.getId().equals("Muse")) {
-                                    Glide.with(MainActivity.this).load(document.getString("ImgArtis")).into(ArtistaTres);
-                                    NombreArtistaTres.setText(document.getString("Nombre"));
-                                    //Log.d("Entrooo","Es igual");
-                                }
+                                cont ++;
+
+                                LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                                recyclerView.setLayoutManager(layoutManager);
+                                recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+                                AdaptadorArtist = new AdaptadorArtist(MainActivity.this, ListArtis);
+                                recyclerView.setAdapter(AdaptadorArtist);
+
                             }
+
+                            /// GENEROOOOOOOSSSSSSSS
+                            LinearLayoutManager layoutManager2= new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                            recyclerViewGen.setLayoutManager(layoutManager2);
+                            recyclerViewGen.setItemAnimator(new DefaultItemAnimator());
+                            AdapterGenero = new AdapterGenero(MainActivity.this, Generos);
+                            recyclerViewGen.setAdapter(AdapterGenero);
+
                         } else {
                             Log.d("Error", "Error getting documents: ", task.getException());
                         }
@@ -151,29 +164,24 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    /*private void startSound(String filename) {
-        AssetFileDescriptor afd = null;
-        try {
-            afd = getResources().getAssets().openFd(filename);
-        } catch (IOException e) {
-            e.printStackTrace();
+
+    public void ObtenerSaludo(){
+        Calendar calendario = Calendar.getInstance();
+        int hora = calendario.get(Calendar.HOUR_OF_DAY);
+        Log.d("HORAAAAAAA", String.valueOf(hora));
+        if(hora < 12){
+            Saludo.setText("¡Buenos Días!");
         }
-        player = new MediaPlayer();
-        try {
-            assert afd != null;
-            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(hora > 12 && hora < 19)
+            Saludo.setText("¡Buenas tardes!");
+        if(hora >19){
+            Saludo.setText("¡Buenas noches!");
         }
-        try {
-            player.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
+        
+    }
 
     private void StartMusic(String Uri){
-        String url = Uri ;// your URL here
+        String url = Uri ;
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
@@ -182,11 +190,11 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         try {
-            mediaPlayer.prepare(); // might take long! (for buffering, etc)
+            mediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //mediaPlayer.start();
+
     }
 
     public void Play(View view) {
@@ -194,15 +202,12 @@ public class MainActivity extends AppCompatActivity {
         if(!mediaPlayer.isPlaying()){
             mediaPlayer.start();
             play.setBackgroundResource(R.drawable.ic_baseline_pause_24);
-
+            Log.d("Duracion", String.valueOf(mediaPlayer.getDuration()));
         }
         else {
             mediaPlayer.pause();
             play.setBackgroundResource(R.drawable.ic_baseline_play_arrow_24);
         }
-
-
-
     }
 
     public void openAlbum(View view) {
@@ -211,7 +216,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
 
     }
-
     public void openReproductor(View view) {
         Intent i = new Intent(this, ReproductorActivity.class);
         startActivity(i);
