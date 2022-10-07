@@ -28,7 +28,7 @@
     <TextView
         android:id="@+id/textView_album"
         android:layout_width="174dp"
-        android:layout_height="27dp"
+        android:layout_height="40dp"
         android:layout_marginStart="4dp"
         android:text="Album"
         android:textSize="20sp"

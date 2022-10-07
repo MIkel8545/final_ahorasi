@@ -63,13 +63,6 @@ public class AlbumActivity extends AppCompatActivity {
         can.setText(album.getCanciones() +" canciones");
         yea.setText("Album "+album.getYear());
 
-/*  Album album = new Album(R.drawable.item1, "IMPERA", "Ghost", "12 canciones", " Album 2022");
-
-        img.setImageResource(album.getImagen());
-        alb.setText(album.getNombreAlbum());
-        can.setText(album.getCanciones());
-        yea.setText(album.getYear());*/
-
 
     ArrayList<Song> lista = new ArrayList<>();
         lista.add(new

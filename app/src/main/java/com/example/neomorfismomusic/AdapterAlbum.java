@@ -35,6 +35,7 @@ public class AdapterAlbum extends RecyclerView.Adapter<AdapterAlbum.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull AdapterAlbum.ViewHolder holder, int position) {
         final Album album = Albumes.get(position);
+
         holder.textView.setText(Albumes.get(position).getNombreAlbum());
         holder.imageView.setImageBitmap(BitmapFactory.decodeByteArray(Albumes.get(position).getImagen(), 0, Albumes.get(position).getImagen().length));
         holder.itemView.setOnClickListener(new View.OnClickListener() {

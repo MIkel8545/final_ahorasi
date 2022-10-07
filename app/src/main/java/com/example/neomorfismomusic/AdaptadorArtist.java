@@ -1,6 +1,7 @@
 package com.example.neomorfismomusic;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +35,11 @@ public class AdaptadorArtist extends RecyclerView.Adapter<AdaptadorArtist.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Glide.with(context).load(ListArtist.get(position).getImg()).into(holder.imageView);
-        //holder.imageView.setImageResource(ListArtist.get(position).getImg());
+        //Glide.with(context).load(ListArtist.get(position).getImg()).into(holder.imageView);
         holder.textView.setText(ListArtist.get(position).getNombre());
+        holder.imageView.setImageResource(ListArtist.get(position).getImg());
+        //holder.imageView.setImageResource(ListArtist.get(position).getImg());
+
 
     }
 

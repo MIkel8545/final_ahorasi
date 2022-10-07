@@ -4,17 +4,17 @@ import android.util.Log;
 
 public class artistas {
 
-    private String  Img;
+    private int  Img;
     private String Nombre;
     private String Genero;
 
-    public artistas(String Img, String Nombre, String Genero){
+    public artistas(int Img, String Nombre, String Genero){
         this.Img = Img;
         this.Nombre = Nombre;
         this.Genero = Genero;
     }
 
-    public String  getImg(){
+    public int  getImg(){
         return this.Img;
     }
     public String getNombre(){
