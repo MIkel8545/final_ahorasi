@@ -8,18 +8,21 @@
     android:clipChildren="false"
     tools:context=".BilbiotecaActivity">
 
+
     <com.borutsky.neumorphism.NeumorphicFrameLayout
-        android:layout_width="134dp"
-        android:layout_height="53dp"
-        android:layout_margin="10dp"
-        android:layout_marginStart="73dp"
+        android:id="@+id/neumorphicFrameLayout7"
+        android:layout_width="89dp"
+        android:layout_height="47dp"
         android:layout_weight="1"
         app:background_color="@color/purple_200"
         app:corner_radius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline22"
         app:layout_constraintEnd_toStartOf="@+id/guideline26"
-        app:layout_constraintStart_toEndOf="@+id/neumorphicFrameLayout2"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toEndOf="@+id/neumorphicFrameLayout3"
+        app:layout_constraintStart_toStartOf="@+id/guideline25"
         app:layout_constraintTop_toTopOf="@+id/guideline21"
+        app:layout_constraintVertical_bias="0.363"
         app:shape="rectangle"
         app:state="flat">
 
@@ -29,12 +32,41 @@
             android:id="@+id/txt_busqueda_album"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Álbumes"
             android:background="@android:color/transparent"
+            android:gravity="center"
             android:onClick="AlbumesBiblio"
-            android:textAlignment="gravity" />
+            android:text="Álbumes"
+            android:textAlignment="gravity"
+            tools:ignore="TouchTargetSizeCheck" />
 
+    </com.borutsky.neumorphism.NeumorphicFrameLayout>
+
+    <com.borutsky.neumorphism.NeumorphicFrameLayout
+        android:id="@+id/neumorphicFrameLayout2"
+        android:layout_width="86dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        app:background_color="@color/purple_200"
+        app:corner_radius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline22"
+        app:layout_constraintEnd_toStartOf="@+id/neumorphicFrameLayout3"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="@+id/guideline21"
+        app:shape="rectangle"
+        app:state="flat">
+
+        <!--inside this frame layout we are creating a simple text view-->
+
+        <Button
+            android:id="@+id/txt_Busqueda_Artistas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:onClick="verArtistas"
+            android:text="Artistas"
+            android:textAlignment="gravity" />
     </com.borutsky.neumorphism.NeumorphicFrameLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -100,34 +132,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline25"
         app:layout_constraintTop_toTopOf="@+id/guideline23"
         app:layout_constraintVertical_bias="0.0" />
-
-
-    <com.borutsky.neumorphism.NeumorphicFrameLayout
-        android:id="@+id/neumorphicFrameLayout2"
-        android:layout_width="134dp"
-        android:layout_height="53dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        app:background_color="@color/purple_200"
-        app:corner_radius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline22"
-        app:layout_constraintStart_toStartOf="@+id/guideline25"
-        app:layout_constraintTop_toTopOf="@+id/guideline21"
-        app:shape="rectangle"
-        app:state="flat">
-
-        <!--inside this frame layout we are creating a simple text view-->
-
-        <Button
-            android:id="@+id/txt_Busqueda_Artistas"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Artistas"
-            android:onClick="verArtistas"
-            android:background="@android:color/transparent"
-            android:textAlignment="gravity" />
-    </com.borutsky.neumorphism.NeumorphicFrameLayout>
 
 
     <com.borutsky.neumorphism.NeumorphicFrameLayout
@@ -343,5 +347,35 @@
         </com.borutsky.neumorphism.NeumorphicFrameLayout>
 
     </LinearLayout>
+
+    <com.borutsky.neumorphism.NeumorphicFrameLayout
+        android:id="@+id/neumorphicFrameLayout3"
+        android:layout_width="86dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="4dp"
+        android:layout_weight="1"
+        app:background_color="@color/purple_200"
+        app:corner_radius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline22"
+        app:layout_constraintEnd_toStartOf="@+id/neumorphicFrameLayout7"
+        app:layout_constraintHorizontal_bias="0.784"
+        app:layout_constraintStart_toEndOf="@+id/neumorphicFrameLayout2"
+        app:layout_constraintStart_toStartOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="@+id/guideline21"
+        app:shape="rectangle"
+        app:state="flat">
+
+        <!--inside this frame layout we are creating a simple text view-->
+
+        <Button
+            android:id="@+id/txt_Busqueda_Canciones"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:onClick="verCanciones"
+            android:text="Canciones"
+            android:textAlignment="gravity" />
+    </com.borutsky.neumorphism.NeumorphicFrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

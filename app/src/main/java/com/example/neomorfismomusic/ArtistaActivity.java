@@ -25,6 +25,7 @@ import java.util.Date;
 public class ArtistaActivity extends AppCompatActivity {
 
     ListView listSong;
+    TextView txtArtista;
     MediaPlayer mediaPlayer;
     Button play;
     artistas ArtistaActual;
@@ -45,6 +46,10 @@ public class ArtistaActivity extends AppCompatActivity {
 
         listSong = findViewById(R.id.list_canciones2);
         ImagenArtist = findViewById(R.id.ImagenArtist);
+
+        //Textview Nombre Artista
+        txtArtista = findViewById(R.id.textView_NombreArtista);
+
         ArtsAlb = findViewById(R.id.ArtsAlb);
         ArtistaActual = (artistas) getIntent().getExtras().getSerializable("ArtistaDetails");
         lista = new ArrayList<>();
@@ -69,6 +74,7 @@ public class ArtistaActivity extends AppCompatActivity {
             String Name  = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
             String albumName2 = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
             imgAlbum = mmr.getEmbeddedPicture();
+            txtArtista.setText(ArtistaActual.getNombre());
 
             if(ArtistaActual.getNombre().equals(artist)){
                 Song song = new Song(imgAlbum, Name, ArtistaActual.getNombre(), CancionesArtistas[i], albumName2);

@@ -18,13 +18,13 @@
         android:layout_marginTop="30dp"
         android:text="¡Buenos Días!"
         android:textColor="@color/letras"
-        android:textSize="20dp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/generos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="369dp"
+        android:layout_height="136dp"
         android:layout_below="@id/firstBlock"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
@@ -69,7 +69,6 @@
     </LinearLayout>
 
 
-
     <TextView
         android:id="@+id/TextArts"
         android:layout_width="wrap_content"
@@ -78,11 +77,9 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="0dp"
         android:text="Artistas"
-        android:textSize="14dp">
+        android:textSize="16sp">
 
     </TextView>
-
-
 
 
     <TextView
@@ -93,7 +90,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="15dp"
         android:text="Álbums"
-        android:textSize="14dp">
+        android:textSize="16sp">
 
     </TextView>
 
