@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView recyclerViewGen;
     RecyclerView recyclerviewAlbum;
-    ArrayList<artistas> ListArtis;
+    static ArrayList<artistas> ListArtis;
     ArrayList<String> Generos;
     ArrayList<String> NameAlbum;
     ArrayList<Album> Albumes;
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     String Gen;
     int NumeroCanciones = 1;
     public static int[] idCanciones;
-    int CancionActual = 0;
+   public static int CancionActual = 0;
 
     AdaptadorArtist AdaptadorArtist;
     AdapterGenero AdapterGenero;
@@ -99,18 +99,11 @@ public class MainActivity extends AppCompatActivity {
         skip_prev = findViewById(R.id.skip_prev);
         AlbumImg = findViewById(R.id.AlbumImg);
         Info = findViewById(R.id.InfoSong);
-        ArtistaUno = findViewById(R.id.ArtistaUno);
-        NombreArtistaUno = findViewById(R.id.NombreArtistaUno);
-        ArtistaDos = findViewById(R.id.ArtistaDos);
-        NombreArtistaDos = findViewById(R.id.NombreArtistaDos);
-        NombreArtistaTres = findViewById(R.id.NombreArtistaTres);
+
         Saludo = findViewById(R.id.firstBlock);
         recyclerView = findViewById(R.id.recyclerview);
         recyclerViewGen = findViewById(R.id.recyclerviewGen);
         recyclerviewAlbum = findViewById(R.id.recyclerviewAlbum);
-
-
-        ArtistaTres = findViewById(R.id.ArtistaTres);
         play.setBackgroundResource(R.drawable.ic_baseline_play_arrow_24);
         firebaseFirestore = FirebaseFirestore.getInstance();
         ObtenerSaludo();
@@ -242,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openBusqueda(View view) {
         Intent i = new Intent(this, BusquedaActivity.class);
+        i.putExtra("Canciones", idCanciones);
         startActivity(i);
     }
 
@@ -252,6 +246,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void openBiblioteca(View view) {
         Intent i = new Intent(this, BilbiotecaActivity.class);
+        i.putExtra("Canciones", idCanciones);
+        i.putExtra("Artistas", ListArtis);
+        i.putExtra("Generos", Generos);
         startActivity(i);
     }
 
@@ -313,6 +310,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlbumImg.setImageBitmap(BitmapFactory.decodeByteArray(img, 0, img.length));
         Info.setText(cancionName + "\n" + art);
+
     }
 
     public void Prev_song(View view) {

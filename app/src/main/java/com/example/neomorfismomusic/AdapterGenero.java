@@ -1,6 +1,7 @@
 package com.example.neomorfismomusic;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,19 @@ public class AdapterGenero extends RecyclerView.Adapter<AdapterGenero.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull AdapterGenero.ViewHolder holder, int position) {
+
+        String GeneroActual = ListGenero.get(position);
         holder.textGenero.setText(ListGenero.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(holder.itemView.getContext(), gnero.class);
+                i.putExtra("GeneroDetails",GeneroActual);
+                i.putExtra("Canciones", MainActivity.idCanciones);
+                i.putExtra("artistas", MainActivity.ListArtis);
+                holder.itemView.getContext().startActivity(i);
+            }
+        });
 
     }
 

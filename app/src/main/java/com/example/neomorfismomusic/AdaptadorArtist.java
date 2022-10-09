@@ -1,7 +1,9 @@
 package com.example.neomorfismomusic;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AdaptadorArtist extends RecyclerView.Adapter<AdaptadorArtist.ViewHolder> {
@@ -35,10 +38,21 @@ public class AdaptadorArtist extends RecyclerView.Adapter<AdaptadorArtist.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        artistas artista = ListArtist.get(position);
         //Glide.with(context).load(ListArtist.get(position).getImg()).into(holder.imageView);
         holder.textView.setText(ListArtist.get(position).getNombre());
         holder.imageView.setImageResource(ListArtist.get(position).getImg());
         //holder.imageView.setImageResource(ListArtist.get(position).getImg());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(holder.itemView.getContext(), ArtistaActivity.class);
+                i.putExtra("ArtistaDetails", artista);
+                i.putExtra("Canciones", MainActivity.idCanciones);
+                holder.itemView.getContext().startActivity(i);
+            }
+        });
 
 
     }

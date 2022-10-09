@@ -2,13 +2,18 @@ package com.example.neomorfismomusic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,50 +27,58 @@ public class ArtistaActivity extends AppCompatActivity {
     ListView listSong;
     MediaPlayer mediaPlayer;
     Button play;
+    artistas ArtistaActual;
+    ArrayList<Song> lista;
+    ImageView ImagenArtist;
+    int[] CancionesArtistas;
+    byte[] imgAlbum;
+    byte[] albumArtis;
+    ImageView ArtsAlb;
 
 
 
-
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artista);
 
-
-
         listSong = findViewById(R.id.list_canciones2);
+        ImagenArtist = findViewById(R.id.ImagenArtist);
+        ArtsAlb = findViewById(R.id.ArtsAlb);
+        ArtistaActual = (artistas) getIntent().getExtras().getSerializable("ArtistaDetails");
+        lista = new ArrayList<>();
+        CancionesArtistas = (int[]) getIntent().getExtras().getSerializable("Canciones");
+
+        ObtenCanciones();
+        ImagenArtist.setImageResource(ArtistaActual.getImg());
+        ArtsAlb.setImageBitmap(BitmapFactory.decodeByteArray(albumArtis, 0, albumArtis.length));
 
 
-      /*  ArrayList<Song> lista = new ArrayList<>();
-        lista.add(new
+    }
+    public void ObtenCanciones(){
 
-                Song(R.drawable.item1, "Imperium","Ghost"));
-        lista.add(new
+        for(int i = 0; i < CancionesArtistas.length; i++) {
 
-                Song(R.drawable.item1, "Kaisarion","Ghost"));
-        lista.add(new
+            final AssetFileDescriptor afd2 = getResources().openRawResourceFd(CancionesArtistas[i]);
+            MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+            mmr.setDataSource(afd2.getFileDescriptor(), afd2.getStartOffset(), afd2.getLength());
 
-                Song(R.drawable.item1, "Spillways","Ghost"));
-        lista.add(new
+            //OBTEN EL METADATA ALBUM
+            String artist = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+            String Name  = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+            String albumName2 = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+            imgAlbum = mmr.getEmbeddedPicture();
 
-                Song(R.drawable.item1, "Call Me Little Sunshine","Ghost"));
-        lista.add(new
+            if(ArtistaActual.getNombre().equals(artist)){
+                Song song = new Song(imgAlbum, Name, ArtistaActual.getNombre(), CancionesArtistas[i], albumName2);
+                lista.add(song);
+                albumArtis = imgAlbum;
+            }
 
-                Song(R.drawable.item1, "Hunter's Moon","Ghost"));
-        lista.add(new
-
-                Song(R.drawable.item1, "Watcher in the Sky","Ghost"));
-        lista.add(new
-
-                Song(R.drawable.item1, "Dominion","Ghost"));
-        lista.add(new
-
-                Song(R.drawable.item1, "Twenties","Ghost"));
-
-
+        }
         SongAdapter songAdapter = new SongAdapter(this, R.layout.song_list, lista);
         listSong.setAdapter(songAdapter);
-        */
 
     }
 

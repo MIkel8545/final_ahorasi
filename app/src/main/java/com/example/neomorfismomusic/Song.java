@@ -1,6 +1,7 @@
 package com.example.neomorfismomusic;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 public class Song {
 
@@ -20,6 +21,7 @@ public class Song {
         this.album = album;
     }
 
+    public int getMp3(){return this.mp3;}
     public byte[] getImagen() {
         return Imagen;
     }
@@ -48,5 +50,8 @@ public class Song {
         return this.album;
     }
 
+    public void Mostrar(){
+        Log.d("Muestra datos", this.Nombre + " - " + this.Artista);
+    }
 }
 

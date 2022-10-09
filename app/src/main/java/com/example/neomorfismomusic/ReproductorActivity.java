@@ -41,6 +41,7 @@ public class ReproductorActivity extends AppCompatActivity {
     ImageView ImgSong;
     TextView textView3;
     TextView textView4;
+    TextView textView;
     SeekBar seekBar;
     boolean wasPlaying = false;
     FloatingActionButton fab;
@@ -58,6 +59,7 @@ public class ReproductorActivity extends AppCompatActivity {
        ImgSong = findViewById(R.id.ImgSong);
         textView3 = findViewById(R.id.textView3);
         textView4 = findViewById(R.id.textView4);
+        textView = findViewById(R.id.textView);
         seekBar = findViewById(R.id.seekBar2);
 
 
@@ -123,7 +125,9 @@ public class ReproductorActivity extends AppCompatActivity {
     private void skeebarProgress() {
 
         int currPos = mediaPlayer.getCurrentPosition();
+
         seekBar.setProgress(currPos);
+        textView.setText(currPos);
         runnable = new Runnable(){
 
             @Override

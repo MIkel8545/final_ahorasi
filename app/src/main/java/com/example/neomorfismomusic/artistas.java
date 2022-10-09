@@ -2,7 +2,9 @@ package com.example.neomorfismomusic;
 
 import android.util.Log;
 
-public class artistas {
+import java.io.Serializable;
+
+public class artistas implements Serializable {
 
     private int  Img;
     private String Nombre;

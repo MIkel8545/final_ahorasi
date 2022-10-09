@@ -44,6 +44,8 @@ public class AlbumActivity extends AppCompatActivity {
     ImageView imageView;
     MediaPlayer mediaPlayer;
     MediaMetadataRetriever mmr;
+    ImageView AlbumImg;
+    TextView Info;
 
 
 
@@ -69,12 +71,12 @@ public class AlbumActivity extends AppCompatActivity {
         can = findViewById(R.id.textView_canciones);
 
         yea = findViewById(R.id.textView_year);
+        AlbumImg = findViewById(R.id.AlbumImg);
+        Info = findViewById(R.id.InfoSong);
 
 
         album = (Album) getIntent().getExtras().getSerializable("AlbumDetails");
         CancionesAlbum = (int[]) getIntent().getExtras().getSerializable("Canciones");
-        mediaPlayer = (MediaPlayer) getIntent().getExtras().getSerializable("media");
-
 
         lista = new ArrayList<>();
         ObtenCanciones();
@@ -82,9 +84,42 @@ public class AlbumActivity extends AppCompatActivity {
         alb.setText(album.getNombreAlbum().toUpperCase());
         can.setText(NumCanciones +" canciones");
         yea.setText("Album "+album.getYear());
+        int Du = (int) getIntent().getExtras().getSerializable("Dur");
+        int CancionActual = (int) getIntent().getExtras().getSerializable("Cancion");
+        CancionActual(CancionActual);
+    }
 
+    public void CancionActual(int Uri){
+        final AssetFileDescriptor afd = getResources().openRawResourceFd(Uri);
+        mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        String duration = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+        String albumName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+        String cancionName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+        String art = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+        byte[] img = mmr.getEmbeddedPicture();
+        long dur = Long.parseLong(duration);
+        String seconds = String.valueOf((dur % 60000) / 1000);
+        String minutes = String.valueOf(dur / 60000);
+        String out = minutes + ":" + seconds;
+        if (seconds.length() == 1) {
+            Log.d("Duracion", "0" + minutes + ":0" + seconds);
+        } else {
+            Log.d("duracion", "0" + minutes + ":" + seconds);
+        }
 
-}
+        try {
+            mmr.release();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //AlbumImg.setBackgroundResource(picId);
+        // Glide.with(MainActivity.this).load(document.getString("ImgUrl")).into(AlbumImg);
+
+        AlbumImg.setImageBitmap(BitmapFactory.decodeByteArray(img, 0, img.length));
+        Info.setText(cancionName + "\n" + art);
+
+    }
 
     private void IsPlaying(){
 

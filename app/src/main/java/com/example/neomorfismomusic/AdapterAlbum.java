@@ -44,10 +44,13 @@ public class AdapterAlbum extends RecyclerView.Adapter<AdapterAlbum.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                int Du = MainActivity.mediaPlayer.getCurrentPosition();
                 Intent i = new Intent(holder.itemView.getContext(), AlbumActivity.class);
                 i.putExtra("AlbumDetails", album);
                 i.putExtra("Canciones", MainActivity.idCanciones);
+                i.putExtra("Dur", Du);
+                i.putExtra("Cancion", MainActivity.idCanciones[MainActivity.CancionActual]);
+                //MainActivity.mediaPlayer.stop();
                 holder.itemView.getContext().startActivity(i);
             }
         });

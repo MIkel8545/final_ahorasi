@@ -3,7 +3,9 @@ package com.example.neomorfismomusic;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.bumptech.glide.load.resource.transcode.BitmapBytesTranscoder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +24,12 @@ public class BilbiotecaActivity extends AppCompatActivity {
     ListView listSong;
     MediaPlayer mediaPlayer;
     Button play;
+    int[] CancionesBiblioteca;
+    ArrayList<Song> lista;
+    //ArrayList<Song> listaBusqueda;
+    SongAdapter songAdapter;
+    ArrayList<artistas> ListaArtistas;
+    ArrayList<String> Generos;
 
 
 
@@ -29,35 +39,34 @@ public class BilbiotecaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bilbioteca);
 
         listSong = findViewById(R.id.list_biblioteca);
-       /* ArrayList<Song> lista = new ArrayList<>();
-        lista.add(new
+        CancionesBiblioteca = (int[]) getIntent().getExtras().getSerializable("Canciones");
+        ListaArtistas = (ArrayList<artistas>) getIntent().getExtras().getSerializable("Artistas");
+        Generos = (ArrayList<String>) getIntent().getExtras().getSerializable("Generos");
+        lista = new ArrayList<>();
+        ObtenCanciones();
+    }
 
-                Song(R.drawable.item1, "Imperium","Ghost"));
-        lista.add(new
+    public void ObtenCanciones(){
 
-                Song(R.drawable.item1, "Kaisarion","Ghost"));
-        lista.add(new
+        for(int i = 0; i < CancionesBiblioteca.length; i++) {
 
-                Song(R.drawable.item1, "Spillways","Ghost"));
-        lista.add(new
+            final AssetFileDescriptor afd2 = getResources().openRawResourceFd(CancionesBiblioteca[i]);
+            MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+            mmr.setDataSource(afd2.getFileDescriptor(), afd2.getStartOffset(), afd2.getLength());
 
-                Song(R.drawable.item1, "Call Me Little Sunshine","Ghost"));
-        lista.add(new
-
-                Song(R.drawable.item1, "Hunter's Moon","Ghost"));
-        lista.add(new
-
-                Song(R.drawable.item1, "Watcher in the Sky","Ghost"));
-        lista.add(new
-
-                Song(R.drawable.item1, "Dominion","Ghost"));
-        lista.add(new
-
-                Song(R.drawable.item1, "Twenties","Ghost"));
+            //OBTEN EL METADATA ALBUM
+            String artist = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+            String Name  = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+            String albumName2 = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+            String Gen = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
+            byte[] imgAlbum = mmr.getEmbeddedPicture();
+            Song song = new Song(imgAlbum, Name, artist, CancionesBiblioteca[i], albumName2);
+            lista.add(song);
+            songAdapter = new SongAdapter(BilbiotecaActivity.this, R.layout.song_list, lista);
+            listSong.setAdapter(songAdapter);
+        }
 
 
-        SongAdapter songAdapter = new SongAdapter(this, R.layout.song_list, lista);
-        listSong.setAdapter(songAdapter);*/
     }
 
     private void StartMusic(String Uri){
@@ -122,5 +131,19 @@ public class BilbiotecaActivity extends AppCompatActivity {
     public void openBiblioteca(View view) {
         Intent i = new Intent(this, BilbiotecaActivity.class);
         startActivity(i);
+    }
+
+    public void verArtistas(View view) {
+
+        listSong.setAdapter(null);
+        AdapterList AdapterList = new AdapterList(BilbiotecaActivity.this, R.layout.song_list, ListaArtistas);
+        listSong.setAdapter(AdapterList);
+
+    }
+
+    public void AlbumesBiblio(View view) {
+        listSong.setAdapter(null);
+        AdapterGenList AdapterList = new AdapterGenList(BilbiotecaActivity.this, R.layout.song_list, Generos);
+        listSong.setAdapter(AdapterList);
     }
 }

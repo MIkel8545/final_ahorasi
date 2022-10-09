@@ -24,6 +24,12 @@
         app:shape="rectangle"
         app:state="flat">
 
+        <ImageView
+            android:id="@+id/ImagenArtist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ImageView>
         <!--inside this frame layout we are creating a simple text view-->
 
 
@@ -36,26 +42,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="139dp" />
 
-    <com.borutsky.neumorphism.NeumorphicFrameLayout
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="20dp"
-
-        android:layout_weight="1"
-        app:background_color="@color/purple_200"
-        app:corner_radius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline13"
-        app:layout_constraintEnd_toStartOf="@+id/guideline16"
-        app:layout_constraintStart_toEndOf="@+id/neumorphicFrameLayout16"
-        app:layout_constraintTop_toTopOf="@+id/guideline12"
-        app:shape="rectangle"
-        app:state="flat">
-
-
-        <!--inside this frame layout we are creating a simple text view-->
-
-    </com.borutsky.neumorphism.NeumorphicFrameLayout>
 
     <com.borutsky.neumorphism.NeumorphicFrameLayout
         android:layout_width="100dp"
@@ -66,34 +52,16 @@
         app:background_color="@color/purple_200"
         app:corner_radius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline13"
-        app:layout_constraintEnd_toStartOf="@+id/neumorphicFrameLayout16"
         app:layout_constraintStart_toStartOf="@+id/guideline15"
         app:layout_constraintTop_toTopOf="@+id/guideline12"
         app:shape="rectangle"
         app:state="flat">
+        <ImageView
+            android:id="@+id/ArtsAlb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-
-        <!--inside this frame layout we are creating a simple text view-->
-
-    </com.borutsky.neumorphism.NeumorphicFrameLayout>
-
-    <com.borutsky.neumorphism.NeumorphicFrameLayout
-        android:id="@+id/neumorphicFrameLayout16"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
-
-        android:layout_marginTop="28dp"
-        android:layout_weight="1"
-        app:background_color="@color/purple_200"
-        app:corner_radius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline13"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline12"
-        app:shape="rectangle"
-        app:state="flat">
+        </ImageView>
 
 
         <!--inside this frame layout we are creating a simple text view-->
