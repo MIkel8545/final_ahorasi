@@ -29,7 +29,7 @@ public class BilbiotecaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bilbioteca);
 
         listSong = findViewById(R.id.list_biblioteca);
-        ArrayList<Song> lista = new ArrayList<>();
+       /* ArrayList<Song> lista = new ArrayList<>();
         lista.add(new
 
                 Song(R.drawable.item1, "Imperium","Ghost"));
@@ -57,7 +57,7 @@ public class BilbiotecaActivity extends AppCompatActivity {
 
 
         SongAdapter songAdapter = new SongAdapter(this, R.layout.song_list, lista);
-        listSong.setAdapter(songAdapter);
+        listSong.setAdapter(songAdapter);*/
     }
 
     private void StartMusic(String Uri){

@@ -2,7 +2,9 @@ package com.example.neomorfismomusic;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AdapterAlbum extends RecyclerView.Adapter<AdapterAlbum.ViewHolder> {
@@ -44,7 +47,8 @@ public class AdapterAlbum extends RecyclerView.Adapter<AdapterAlbum.ViewHolder> 
 
                 Intent i = new Intent(holder.itemView.getContext(), AlbumActivity.class);
                 i.putExtra("AlbumDetails", album);
-                 holder.itemView.getContext().startActivity(i);
+                i.putExtra("Canciones", MainActivity.idCanciones);
+                holder.itemView.getContext().startActivity(i);
             }
         });
     }

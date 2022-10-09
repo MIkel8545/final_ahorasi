@@ -255,6 +255,12 @@
             app:corner_radius="20dp"
             app:shape="circle"
             app:state="flat">
+            <ImageView
+                android:id="@+id/ImgSong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </ImageView>
 
         </com.borutsky.neumorphism.NeumorphicFrameLayout>
 

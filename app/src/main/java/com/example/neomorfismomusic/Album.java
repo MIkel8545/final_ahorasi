@@ -28,7 +28,7 @@ public class Album implements Serializable {
     }
 
     public String getNombreAlbum() {
-        return NombreAlbum;
+        return this.NombreAlbum;
     }
 
     public void setNombreAlbum(String nombreAlbum) {

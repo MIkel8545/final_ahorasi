@@ -1,6 +1,7 @@
 package com.example.neomorfismomusic;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,15 +36,15 @@ public class SongAdapter extends ArrayAdapter<Song> {
         TextView nombre = convertView.findViewById(R.id.song_name);
         TextView artista = convertView.findViewById(R.id.song_artist);
 
-        int prueba = getItem(position).getImagen();
-        String msg = String.valueOf(prueba);
+        //int prueba = getItem(position).getImagen();
+       // String msg = String.valueOf(prueba);
 
-        Log.i("ImagenID: ", msg);
+        //Log.i("ImagenID: ", msg);
 
-        image.setImageResource(getItem(position).getImagen());
+        //image.setImageResource(getItem(position).getImagen());
         nombre.setText(getItem(position).getNombre());
         artista.setText(getItem(position).getArtista());
-
+        image.setImageBitmap(BitmapFactory.decodeByteArray(getItem(position).getImagen(), 0,getItem(position).getImagen().length));
         return convertView;
     }
 

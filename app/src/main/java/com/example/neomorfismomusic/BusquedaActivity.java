@@ -27,7 +27,7 @@ public class BusquedaActivity extends AppCompatActivity {
         listSong = findViewById(R.id.list_busqueda);
 
 
-        ArrayList<Song> lista = new ArrayList<>();
+       /* ArrayList<Song> lista = new ArrayList<>();
         lista.add(new
 
                 Song(R.drawable.item1, "Imperium","Ghost"));
@@ -55,7 +55,7 @@ public class BusquedaActivity extends AppCompatActivity {
 
 
         SongAdapter songAdapter = new SongAdapter(this, R.layout.song_list, lista);
-        listSong.setAdapter(songAdapter);
+        listSong.setAdapter(songAdapter);*/
     }
 
     private void StartMusic(String Uri){

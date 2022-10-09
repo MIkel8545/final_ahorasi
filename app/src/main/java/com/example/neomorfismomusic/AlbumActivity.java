@@ -6,7 +6,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,6 +22,7 @@ import android.widget.Toast;
 import com.borutsky.neumorphism.NeumorphicFrameLayout;
 import com.bumptech.glide.Glide;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -30,7 +36,14 @@ public class AlbumActivity extends AppCompatActivity {
     private TextView yea;
     ListView listSong;
     private Album album;
-
+    private int CancionesAlbum[];
+    String albumName2;
+    ArrayList<Song> lista;
+    String AlbumActualName;
+    int NumCanciones;
+    ImageView imageView;
+    MediaPlayer mediaPlayer;
+    MediaMetadataRetriever mmr;
 
 
 
@@ -49,7 +62,7 @@ public class AlbumActivity extends AppCompatActivity {
 
         listSong = findViewById(R.id.listView_canciones);
 
-        img = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.imageView);
 
         alb = findViewById(R.id.textView_album);
 
@@ -57,43 +70,25 @@ public class AlbumActivity extends AppCompatActivity {
 
         yea = findViewById(R.id.textView_year);
 
+
         album = (Album) getIntent().getExtras().getSerializable("AlbumDetails");
-        Glide.with(AlbumActivity.this).load(album.getImagen()).into(img);
-        alb.setText(album.getNombreAlbum().toUpperCase(Locale.ROOT));
-        can.setText(album.getCanciones() +" canciones");
+        CancionesAlbum = (int[]) getIntent().getExtras().getSerializable("Canciones");
+        mediaPlayer = (MediaPlayer) getIntent().getExtras().getSerializable("media");
+
+
+        lista = new ArrayList<>();
+        ObtenCanciones();
+        AlbumActualName = album.getNombreAlbum();
+        alb.setText(album.getNombreAlbum().toUpperCase());
+        can.setText(NumCanciones +" canciones");
         yea.setText("Album "+album.getYear());
 
 
-    ArrayList<Song> lista = new ArrayList<>();
-        lista.add(new
-
-    Song(R.drawable.item1, "Imperium","Ghost"));
-        lista.add(new
-
-    Song(R.drawable.item1, "Kaisarion","Ghost"));
-        lista.add(new
-
-    Song(R.drawable.item1, "Spillways","Ghost"));
-        lista.add(new
-
-    Song(R.drawable.item1, "Call Me Little Sunshine","Ghost"));
-        lista.add(new
-
-    Song(R.drawable.item1, "Hunter's Moon","Ghost"));
-        lista.add(new
-
-    Song(R.drawable.item1, "Watcher in the Sky","Ghost"));
-        lista.add(new
-
-    Song(R.drawable.item1, "Dominion","Ghost"));
-        lista.add(new
-
-    Song(R.drawable.item1, "Twenties","Ghost"));
-
-
-    SongAdapter songAdapter = new SongAdapter(this, R.layout.song_list, lista);
-        listSong.setAdapter(songAdapter);
 }
+
+    private void IsPlaying(){
+
+    }
     private class  ButtonHandler implements View.OnClickListener
     {
         @Override
@@ -109,6 +104,31 @@ public class AlbumActivity extends AppCompatActivity {
         }
     }
 
+    public void ObtenCanciones(){
+
+        for(int i = 0; i < CancionesAlbum.length; i++) {
+
+            final AssetFileDescriptor afd2 = getResources().openRawResourceFd(CancionesAlbum[i]);
+            MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+            mmr.setDataSource(afd2.getFileDescriptor(), afd2.getStartOffset(), afd2.getLength());
+
+            //OBTEN EL METADATA ALBUM
+            albumName2 = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+            String Name  = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+            Log.d("COMPARACION", "Metadata: " + albumName2 +" - AlbumActual: "+ album.getNombreAlbum());
+
+             if(album.getNombreAlbum().equals(albumName2)) {
+                 Song song = new Song(album.getImagen(), Name, album.getArtista(), CancionesAlbum[i], albumName2);
+                 lista.add(song);
+                 NumCanciones++;
+
+             }
+        }
+        SongAdapter songAdapter = new SongAdapter(this, R.layout.song_list, lista);
+        listSong.setAdapter(songAdapter);
+        imageView.setImageBitmap(BitmapFactory.decodeByteArray(album.getImagen(), 0,album.getImagen().length));
+
+    }
 
     public void openHome(View view) {
 

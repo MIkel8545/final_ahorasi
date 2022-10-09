@@ -172,6 +172,7 @@
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:onClick="Prev_song"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_skip_previous_24"
@@ -194,7 +195,7 @@
                 android:id="@+id/skip_next"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
-
+                android:onClick="Next_song"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"

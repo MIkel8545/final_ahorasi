@@ -38,7 +38,7 @@ public class HistorialActivity extends AppCompatActivity {
         listSong = findViewById(R.id.list_historial);
 
 
-        ArrayList<Song> lista = new ArrayList<>();
+        /*ArrayList<Song> lista = new ArrayList<>();
         lista.add(new
 
                 Song(R.drawable.item1, "Imperium","Ghost"));
@@ -66,7 +66,7 @@ public class HistorialActivity extends AppCompatActivity {
 
 
         SongAdapter songAdapter = new SongAdapter(this, R.layout.song_list, lista);
-        listSong.setAdapter(songAdapter);
+        listSong.setAdapter(songAdapter);*/
     }
 
 

@@ -6,21 +6,25 @@ public class Song {
 
 
     String Artista;
-    int Imagen;
+    byte[] Imagen;
     String Nombre;
+    int mp3;
+    String album;
 
 
-    public Song(int imagen, String nombre, String artista) {
+    public Song(byte[] imagen, String nombre, String artista, int mp3, String album) {
         Imagen = imagen;
         Nombre = nombre;
         Artista = artista;
+        this.mp3 = mp3;
+        this.album = album;
     }
 
-    public int getImagen() {
+    public byte[] getImagen() {
         return Imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(byte[] imagen) {
         Imagen = imagen;
     }
 
@@ -38,6 +42,10 @@ public class Song {
 
     public void setArtista(String artista) {
         Artista = artista;
+    }
+
+    public String getAlbum(){
+        return this.album;
     }
 
 }
