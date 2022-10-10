@@ -127,7 +127,8 @@ public class ReproductorActivity extends AppCompatActivity {
         int currPos = mediaPlayer.getCurrentPosition();
 
         seekBar.setProgress(currPos);
-        textView.setText(currPos);
+
+        //textView.setText(currPos);
         runnable = new Runnable(){
 
             @Override

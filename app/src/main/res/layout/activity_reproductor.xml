@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-
+                android:onClick="Play"
                 app:srcCompat="@drawable/ic_baseline_play_arrow_24"
                 tools:ignore="SpeakableTextPresentCheck"
                 android:contentDescription="" />

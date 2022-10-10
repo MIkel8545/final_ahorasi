@@ -43,13 +43,14 @@ public class AlbumActivity extends AppCompatActivity {
     String AlbumActualName;
     int NumCanciones;
     ImageView imageView;
-    MediaPlayer mediaPlayer;
+    static MediaPlayer mediaPlayer;
     MediaMetadataRetriever mmr;
-    ImageView AlbumImg;
-    TextView Info;
+    static ImageView AlbumImg;
+    static TextView Info;
+    int CancionActual;
 
     //Reproductor
-    Button play;
+    static Button play;
     Button skip_prev;
     Button skip_next;
 
@@ -101,11 +102,12 @@ public class AlbumActivity extends AppCompatActivity {
         can.setText(NumCanciones +" canciones");
         yea.setText("Album "+album.getYear());
         int Du = (int) getIntent().getExtras().getSerializable("Dur");
-        int CancionActual = (int) getIntent().getExtras().getSerializable("Cancion");
+        CancionActual = (int) getIntent().getExtras().getSerializable("Cancion");
         CancionActual(CancionActual);
     }
 
     public void CancionActual(int Uri){
+        mediaPlayer =  MediaPlayer.create(AlbumActivity.this, Uri);
         final AssetFileDescriptor afd = getResources().openRawResourceFd(Uri);
         mmr = new MediaMetadataRetriever();
         mmr.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
@@ -185,6 +187,9 @@ public class AlbumActivity extends AppCompatActivity {
 
         finish();
     }
+    public void IniciarCanc(View v){
+        ReproducirCancion(mediaPlayer);
+    }
 
 
     public void openBusqueda(View view) {
@@ -223,7 +228,51 @@ public class AlbumActivity extends AppCompatActivity {
         }, changeTime);
 
     }
+    public static void ReproducirCancion( MediaPlayer mediaPlayer){
+        if(!mediaPlayer.isPlaying()){
+            mediaPlayer.start();
 
+            play.setBackgroundResource(R.drawable.ic_baseline_pause_24);
+        }
+        else {
+            mediaPlayer.pause();
+            play.setBackgroundResource(R.drawable.ic_baseline_play_arrow_24);
+
+        }
+    }
+
+    public void AnteriorSong(View view){
+        if(CancionActual > CancionesAlbum.length-1){
+            CancionActual = 0;
+            mediaPlayer.reset();
+            CancionActual(CancionesAlbum[CancionActual]);
+            ReproducirCancion(mediaPlayer);
+        }
+        else
+        {
+            CancionActual++;
+            mediaPlayer.reset();
+            CancionActual(CancionesAlbum[CancionActual]);
+            ReproducirCancion(mediaPlayer);
+        }
+    }
+
+    public void SiguienteSong(View v){
+        if(CancionActual > 0){
+            CancionActual--;
+            mediaPlayer.reset();
+            CancionActual(CancionesAlbum[CancionActual]);
+            ReproducirCancion(mediaPlayer);
+            Log.d("Reproduciendo", String.valueOf(CancionActual) + CancionesAlbum[CancionActual]);
+        }
+        else {
+            CancionActual = 0;
+            mediaPlayer.reset();
+            CancionActual(CancionesAlbum[CancionActual]);
+            ReproducirCancion(mediaPlayer);
+            Log.d("Reproduciendo", String.valueOf(CancionActual) + CancionesAlbum[CancionActual]);
+        }
+    }
     /*
     public void Next_song(View view) {
 

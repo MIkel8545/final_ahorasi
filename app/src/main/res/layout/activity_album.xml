@@ -227,7 +227,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_skip_previous_24"
-                android:onClick="Prev_song"
+                android:onClick="AnteriorSong"
                 android:text=""
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -238,7 +238,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="Play"
+                android:onClick="IniciarCanc"
                 android:text=""
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -251,7 +251,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_skip_next_24"
-                android:onClick="Next_song"
+                android:onClick="SiguienteSong"
                 android:text=""
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </LinearLayout>
