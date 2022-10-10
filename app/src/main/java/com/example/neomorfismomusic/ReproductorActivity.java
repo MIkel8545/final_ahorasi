@@ -194,7 +194,7 @@ public class ReproductorActivity extends AppCompatActivity {
 
     void iconoPresionado(String s, ImageButton btn) {
 
-        btn.setImageTintList(ColorStateList.valueOf(Color.argb(100,78, 125, 237)));
+        btn.setImageTintList(ColorStateList.valueOf(Color.rgb(78, 125, 237)));
         Toast.makeText(ReproductorActivity.this, "Boton " + s + " pulsado", Toast.LENGTH_SHORT).show();
 
     }

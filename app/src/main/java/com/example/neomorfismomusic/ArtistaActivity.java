@@ -27,7 +27,6 @@ public class ArtistaActivity extends AppCompatActivity {
     ListView listSong;
     TextView txtArtista;
     MediaPlayer mediaPlayer;
-    Button play;
     artistas ArtistaActual;
     ArrayList<Song> lista;
     ImageView ImagenArtist;
@@ -36,6 +35,14 @@ public class ArtistaActivity extends AppCompatActivity {
     byte[] albumArtis;
     ImageView ArtsAlb;
 
+    //Reproductor
+    Button play;
+    Button skip_prev;
+    Button skip_next;
+    ImageView AlbumImg;
+    TextView Info;
+    MediaMetadataRetriever mmr;
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -43,6 +50,21 @@ public class ArtistaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artista);
+
+        //Reproductor
+        play = findViewById(R.id.play);
+        play.setBackgroundResource(R.drawable.ic_baseline_play_arrow_24);
+        skip_next = findViewById(R.id.skip_next);
+        skip_prev = findViewById(R.id.skip_prev);
+        AlbumImg = findViewById(R.id.AlbumImg);
+        Info = findViewById(R.id.InfoSong);
+
+        int Du = (int) getIntent().getExtras().getSerializable("Dur");
+        int CancionActual = (int) getIntent().getExtras().getSerializable("Cancion");
+        CancionActual(CancionActual);
+
+
+
 
         listSong = findViewById(R.id.list_canciones2);
         ImagenArtist = findViewById(R.id.ImagenArtist);
@@ -61,6 +83,41 @@ public class ArtistaActivity extends AppCompatActivity {
 
 
     }
+
+    public void CancionActual(int Uri){
+        final AssetFileDescriptor afd = getResources().openRawResourceFd(Uri);
+        mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        String duration = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+        String albumName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+        String cancionName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+        String art = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+        byte[] img = mmr.getEmbeddedPicture();
+        long dur = Long.parseLong(duration);
+        String seconds = String.valueOf((dur % 60000) / 1000);
+        String minutes = String.valueOf(dur / 60000);
+        String out = minutes + ":" + seconds;
+        if (seconds.length() == 1) {
+            Log.d("Duracion", "0" + minutes + ":0" + seconds);
+        } else {
+            Log.d("duracion", "0" + minutes + ":" + seconds);
+        }
+
+        try {
+            mmr.release();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //AlbumImg.setBackgroundResource(picId);
+        // Glide.with(MainActivity.this).load(document.getString("ImgUrl")).into(AlbumImg);
+
+        AlbumImg.setImageBitmap(BitmapFactory.decodeByteArray(img, 0, img.length));
+        Info.setText(cancionName + "\n" + art);
+
+    }
+
+
+
     public void ObtenCanciones(){
 
         for(int i = 0; i < CancionesArtistas.length; i++) {

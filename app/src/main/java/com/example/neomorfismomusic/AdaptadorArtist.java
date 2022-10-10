@@ -50,6 +50,10 @@ public class AdaptadorArtist extends RecyclerView.Adapter<AdaptadorArtist.ViewHo
                 Intent i = new Intent(holder.itemView.getContext(), ArtistaActivity.class);
                 i.putExtra("ArtistaDetails", artista);
                 i.putExtra("Canciones", MainActivity.idCanciones);
+                int Du = MainActivity.mediaPlayer.getCurrentPosition();
+                i.putExtra("Dur", Du);
+                i.putExtra("Cancion", MainActivity.idCanciones[MainActivity.CancionActual]);
+
                 holder.itemView.getContext().startActivity(i);
             }
         });

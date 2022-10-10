@@ -40,6 +40,9 @@ public class AdapterGenero extends RecyclerView.Adapter<AdapterGenero.ViewHolder
                 i.putExtra("GeneroDetails",GeneroActual);
                 i.putExtra("Canciones", MainActivity.idCanciones);
                 i.putExtra("artistas", MainActivity.ListArtis);
+                int Du = MainActivity.mediaPlayer.getCurrentPosition();
+                i.putExtra("Dur", Du);
+                i.putExtra("Cancion", MainActivity.idCanciones[MainActivity.CancionActual]);
                 holder.itemView.getContext().startActivity(i);
             }
         });

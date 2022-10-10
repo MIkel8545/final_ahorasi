@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.content.res.ColorStateList;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.icu.text.CaseMap;
 import android.media.AudioManager;
 import android.media.MediaMetadataRetriever;
@@ -52,12 +54,6 @@ public class MainActivity extends AppCompatActivity {
     Button skip_next;
     ImageView AlbumImg;
     TextView Info;
-    TextView NombreArtistaUno;
-    TextView NombreArtistaDos;
-    TextView NombreArtistaTres;
-    ImageView ArtistaDos;
-    ImageView ArtistaUno;
-    ImageView ArtistaTres;
     TextView Saludo;
     RecyclerView recyclerView;
     RecyclerView recyclerViewGen;
@@ -68,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Album> Albumes;
     static ArrayList<Song> lista;
 
-    //List<song> ListaCanciones = new ArrayList<song>();
+
     FirebaseFirestore firebaseFirestore;
 
-    TextView prueba2;
+
     String [] img = new String[3];
     String [] text = new String[3];
     int cont = 0;
@@ -214,11 +210,13 @@ public class MainActivity extends AppCompatActivity {
     public void ReproducirCancion(){
         if(!mediaPlayer.isPlaying()){
             mediaPlayer.start();
+
             play.setBackgroundResource(R.drawable.ic_baseline_pause_24);
         }
         else {
             mediaPlayer.pause();
             play.setBackgroundResource(R.drawable.ic_baseline_play_arrow_24);
+
         }
     }
     public void openAlbum(View view) {
@@ -236,11 +234,18 @@ public class MainActivity extends AppCompatActivity {
     public void openBusqueda(View view) {
         Intent i = new Intent(this, BusquedaActivity.class);
         i.putExtra("Canciones", idCanciones);
+        int Du = MainActivity.mediaPlayer.getCurrentPosition();
+        i.putExtra("Dur", Du);
+        i.putExtra("Cancion", MainActivity.idCanciones[MainActivity.CancionActual]);
         startActivity(i);
     }
 
     public void openHistorial(View view) {
         Intent i = new Intent(this, HistorialActivity.class);
+        int Du = MainActivity.mediaPlayer.getCurrentPosition();
+        i.putExtra("Canciones", MainActivity.idCanciones);
+        i.putExtra("Dur", Du);
+        i.putExtra("Cancion", MainActivity.idCanciones[MainActivity.CancionActual]);
         startActivity(i);
     }
 
@@ -249,6 +254,9 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("Canciones", idCanciones);
         i.putExtra("Artistas", ListArtis);
         i.putExtra("Generos", Generos);
+        int Du = MainActivity.mediaPlayer.getCurrentPosition();
+        i.putExtra("Dur", Du);
+        i.putExtra("Cancion", MainActivity.idCanciones[MainActivity.CancionActual]);
         startActivity(i);
     }
 

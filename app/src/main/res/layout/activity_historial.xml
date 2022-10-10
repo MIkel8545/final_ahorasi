@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="88dp" />
+        app:layout_constraintGuide_begin="129dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline18"
@@ -63,8 +63,8 @@
 
     <ListView
         android:id="@+id/list_historial"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="365dp"
+        android:layout_height="413dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"
         app:layout_constraintHorizontal_bias="0.378"
@@ -74,8 +74,8 @@
 
 
     <com.borutsky.neumorphism.NeumorphicFrameLayout
-        android:layout_width="369dp"
-        android:layout_height="69dp"
+        android:layout_width="382dp"
+        android:layout_height="66dp"
 
         android:layout_weight="1"
         app:background_color="@color/purple_200"
@@ -89,7 +89,7 @@
 
         <LinearLayout
             android:id="@+id/MiniReprodu"
-            android:layout_width="403dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/Album"
             android:layout_alignParentStart="true"
@@ -109,10 +109,10 @@
 
             <TextView
                 android:id="@+id/InfoSong"
-                android:layout_width="93dp"
-                android:layout_height="61dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:layout_marginLeft="0dp"
                 android:paddingTop="20dp">
 
 
@@ -126,8 +126,9 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_skip_previous_24"
+                android:onClick="Prev_song"
                 android:text=""
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <Button
                 android:id="@+id/play"
@@ -138,18 +139,18 @@
                 android:background="@android:color/transparent"
                 android:onClick="Play"
                 android:text=""
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
             <Button
                 android:id="@+id/skip_next"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
-
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_skip_next_24"
+                android:onClick="Next_song"
                 android:text=""
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </LinearLayout>
@@ -176,7 +177,7 @@
 
         <com.borutsky.neumorphism.NeumorphicFrameLayout
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
             app:background_color="@color/purple_200"
@@ -204,7 +205,7 @@
 
         <com.borutsky.neumorphism.NeumorphicFrameLayout
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:layout_marginRight="50dp"
             android:layout_weight="1"
@@ -231,7 +232,7 @@
 
         <com.borutsky.neumorphism.NeumorphicFrameLayout
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
@@ -261,7 +262,7 @@
 
         <com.borutsky.neumorphism.NeumorphicFrameLayout
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:layout_marginLeft="50dp"
             android:layout_weight="1"

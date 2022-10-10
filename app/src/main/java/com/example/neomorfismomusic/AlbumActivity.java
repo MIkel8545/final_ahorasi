@@ -13,6 +13,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -47,12 +48,27 @@ public class AlbumActivity extends AppCompatActivity {
     ImageView AlbumImg;
     TextView Info;
 
+    //Reproductor
+    Button play;
+    Button skip_prev;
+    Button skip_next;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
+
+
+        //Reproductor
+        play = findViewById(R.id.play);
+        play.setBackgroundResource(R.drawable.ic_baseline_play_arrow_24);
+        skip_next = findViewById(R.id.skip_next);
+        skip_prev = findViewById(R.id.skip_prev);
+        AlbumImg = findViewById(R.id.AlbumImg);
+        Info = findViewById(R.id.InfoSong);
 
 
         btn = findViewById(R.id.flat_back);
@@ -208,6 +224,42 @@ public class AlbumActivity extends AppCompatActivity {
 
     }
 
+    /*
+    public void Next_song(View view) {
 
+        if(CancionActual > idCanciones.length-1){
+            CancionActual = 0;
+            mediaPlayer.reset();
+            CargaMusica(idCanciones[CancionActual]);
+            ReproducirCancion();
+        }
+        else {
+            CancionActual++;
+            mediaPlayer.reset();
+            CargaMusica(idCanciones[CancionActual]);
+            ReproducirCancion();
+        }
+    }
+
+    public void Prev_song(View view) {
+
+        Log.d("INDICEEEEEE CANCION ACTUAL", String.valueOf(CancionActual));
+        if(CancionActual > 0){
+            CancionActual--;
+            mediaPlayer.reset();
+            CargaMusica(idCanciones[CancionActual]);
+            ReproducirCancion();
+            Log.d("Reproduciendo", String.valueOf(CancionActual) + idCanciones[CancionActual]);
+        }
+        else {
+            CancionActual = 0;
+            mediaPlayer.reset();
+            CargaMusica(idCanciones[CancionActual]);
+            ReproducirCancion();
+            Log.d("Reproduciendo", String.valueOf(CancionActual) + idCanciones[CancionActual]);
+        }
+    }
+
+    */
 
 }

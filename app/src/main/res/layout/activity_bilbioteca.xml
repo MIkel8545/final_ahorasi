@@ -122,21 +122,21 @@
         app:layout_constraintStart_toStartOf="@+id/guideline25"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <ListView
         android:id="@+id/list_biblioteca"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="360dp"
+        android:layout_height="381dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline24"
         app:layout_constraintEnd_toStartOf="@+id/guideline26"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline25"
         app:layout_constraintTop_toTopOf="@+id/guideline23"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.borutsky.neumorphism.NeumorphicFrameLayout
-        android:layout_width="369dp"
-        android:layout_height="69dp"
+        android:layout_width="382dp"
+        android:layout_height="66dp"
 
         android:layout_weight="1"
         app:background_color="@color/purple_200"
@@ -170,10 +170,10 @@
 
             <TextView
                 android:id="@+id/InfoSong"
-                android:layout_width="93dp"
-                android:layout_height="61dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:layout_marginLeft="0dp"
                 android:paddingTop="20dp">
 
 
@@ -187,6 +187,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_skip_previous_24"
+                android:onClick="Prev_song"
                 android:text=""
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -206,11 +207,11 @@
                 android:id="@+id/skip_next"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
-
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:foreground="@drawable/ic_baseline_skip_next_24"
+                android:onClick="Next_song"
                 android:text=""
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </LinearLayout>
@@ -236,7 +237,7 @@
 
         <com.borutsky.neumorphism.NeumorphicFrameLayout
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
             app:background_color="@color/purple_200"
@@ -257,14 +258,14 @@
                 android:shadowColor="#EEFFFF"
                 android:text=""
                 android:textColor="@color/white"
-                tools:ignore="OnClick,SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </com.borutsky.neumorphism.NeumorphicFrameLayout>
 
 
         <com.borutsky.neumorphism.NeumorphicFrameLayout
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:layout_marginRight="50dp"
             android:layout_weight="1"
@@ -291,7 +292,7 @@
 
         <com.borutsky.neumorphism.NeumorphicFrameLayout
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
@@ -321,7 +322,7 @@
 
         <com.borutsky.neumorphism.NeumorphicFrameLayout
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:layout_marginLeft="50dp"
             android:layout_weight="1"

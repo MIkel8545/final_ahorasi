@@ -3,12 +3,16 @@ package com.example.neomorfismomusic;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,14 +25,36 @@ public class HistorialActivity extends AppCompatActivity {
 
     ListView listSong;
     MediaPlayer mediaPlayer;
-    Button play;
     TextView fecha;
+
+    //Reproductor
+    Button play;
+    Button skip_prev;
+    Button skip_next;
+    ImageView AlbumImg;
+    TextView Info;
+    MediaMetadataRetriever mmr;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historial);
+
+
+
+        //Reproductor
+        play = findViewById(R.id.play);
+        play.setBackgroundResource(R.drawable.ic_baseline_play_arrow_24);
+        skip_next = findViewById(R.id.skip_next);
+        skip_prev = findViewById(R.id.skip_prev);
+        AlbumImg = findViewById(R.id.AlbumImg);
+        Info = findViewById(R.id.InfoSong);
+
+
+        int Du = (int) getIntent().getExtras().getSerializable("Dur");
+        int CancionActual = (int) getIntent().getExtras().getSerializable("Cancion");
+        CancionActual(CancionActual);
 
         Date currentTime = Calendar.getInstance().getTime();
         fecha = findViewById(R.id.textView_fecha);
@@ -68,6 +94,39 @@ public class HistorialActivity extends AppCompatActivity {
         SongAdapter songAdapter = new SongAdapter(this, R.layout.song_list, lista);
         listSong.setAdapter(songAdapter);*/
     }
+
+    public void CancionActual(int Uri){
+        final AssetFileDescriptor afd = getResources().openRawResourceFd(Uri);
+        mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        String duration = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+        String albumName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+        String cancionName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+        String art = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+        byte[] img = mmr.getEmbeddedPicture();
+        long dur = Long.parseLong(duration);
+        String seconds = String.valueOf((dur % 60000) / 1000);
+        String minutes = String.valueOf(dur / 60000);
+        String out = minutes + ":" + seconds;
+        if (seconds.length() == 1) {
+            Log.d("Duracion", "0" + minutes + ":0" + seconds);
+        } else {
+            Log.d("duracion", "0" + minutes + ":" + seconds);
+        }
+
+        try {
+            mmr.release();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //AlbumImg.setBackgroundResource(picId);
+        // Glide.with(MainActivity.this).load(document.getString("ImgUrl")).into(AlbumImg);
+
+        AlbumImg.setImageBitmap(BitmapFactory.decodeByteArray(img, 0, img.length));
+        Info.setText(cancionName + "\n" + art);
+
+    }
+
 
 
 
